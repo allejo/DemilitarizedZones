@@ -1,54 +1,65 @@
 # Plugin Name
 
-[![GitHub release](https://img.shields.io/github/release/USERNAME/REPO.svg)](https://github.com/USERNAME/REPO/releases/latest)
+[![GitHub release](https://img.shields.io/github/release/allejo/DemilitarizedZones.svg)](https://github.com/allejo/DemilitarizedZones/releases/latest)
 ![Minimum BZFlag Version](https://img.shields.io/badge/BZFlag-v2.4.0+-blue.svg)
-[![License](https://img.shields.io/github/license/USERNAME/REPO.svg)](LICENSE.md)
+[![License](https://img.shields.io/github/license/allejo/DemilitarizedZones.svg)](LICENSE.md)
 
-A brief description about what the plugin does should go here
+> :rotating_light: :warning: **WARNING** :rotating_light: :warning:
+>
+> The BZFlag 2.4.x protocol does not *correctly* support change shot types through a plug-in. A shot type *can* be changed by a plug-in and other players on the server will see that new shot type. However, the tank who made the shot will **not** see the change; this means that if the shot ricochets off any objects, the shot path the player sees is entirely different from the shot path other players on the server will see.
+>
+> This plug-in converts shots into Phantom Zoned shots, rendering them harmless to *most* tanks. Despite the name, these shots can and will kill any phantomed tanks.
+>
+> Use at your own risk!
+
+A BZFlag plug-in that introduces the `DMZ` map object. Any tank that shoots inside this zone will have their shots converted into Phantom Zoned shots, rendering them harmless to *most* tanks.
 
 ## Requirements
 
-- List any requirements
-- this plug-in will require
+- C++11
+- BZFlag 2.4.0+
 
 ## Usage
 
 ### Loading the plug-in
 
-You should specify any command line arguments that are needed or lack thereof
+This plug-in does not take any special configuration options at load time.
 
 ```
--loadplugin pluginName...
+-loadplugin DemilitarizedZones
 ```
 
-### Configuration File
+### Custom World Objects
 
-If the plugin requires a custom configuration file, describe it here and all of its special values
-
-### Custom BZDB Variables
-
-These custom BZDB variables must be used with -setforced, which sets BZDB variable <name> to <value>, even if the variable does not exist. These variables may changed at any time in-game by using the /set command.
-
+```text
+# Rectangle
+dmz
+  position <x> <y> <z>
+  size <x> <y> <z>
+  rotation <rot>
+  team <team>
+end
 ```
--setforced <name> <value>
+
+```text
+# Cylinder
+dmz
+  position <x> <y> <z>
+  height <height>
+  radius <radius>
+  team <team>
+end
 ```
 
-| Name | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `_myBZBD` | int | 60 | A description of what this value does |
-
-### Custom Slash Commands
-
-| Command | Permission | Description |
-| ------- | ---------- | ----------- |
-| `/command <param>` | vote | A description of what this command does, the required parameters, and permission required |
-
-### Custom Flags
-
-| Abbreviation | Name | Type | Description |
-| ------------ | ---- | ---- | ----------- |
-| FA | Flag Name | Good | A description of what the flag does |
+- `team` (optional) - This option restricts the DMZ to only affect tanks of a certain color. If this option is left out, it'll apply to all teams. You may use this option multiple times to specify multiple teams. Supported values:
+  - 0 - Rogue Team
+  - 1 - Red Team
+  - 2 - Green Team
+  - 3 - Blue Team
+  - 4 - Purple Team
+  - 5 - Rabbit Team
+  - 6 - Hunter Team
 
 ## License
 
-[LICENSE](LICENSE.md)
+[MIT](LICENSE.md)
