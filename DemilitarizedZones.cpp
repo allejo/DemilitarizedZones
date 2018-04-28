@@ -63,7 +63,7 @@ static bz_eTeamType convertTeamType(int teamNumber)
 }
 
 template <typename T>
-static bool doesVectorContains(std::vector<T> &vec, T val)
+static bool doesVectorContain(std::vector<T> &vec, T val)
 {
     return (std::find(vec.begin(), vec.end(), val) != vec.end());
 }
@@ -103,7 +103,7 @@ const char* DemilitarizedZones::Name()
     return pluginName.c_str();
 }
 
-void DemilitarizedZones::Init(const char* config)
+void DemilitarizedZones::Init(const char* /*config*/)
 {
     Register(bz_eShotFiredEvent);
 
@@ -169,7 +169,7 @@ void DemilitarizedZones::Event(bz_EventData* eventData)
 
             for (auto &dmz : registeredDMZs)
             {
-                if (!dmz.teamsAffected.empty() && !doesVectorContains<bz_eTeamType>(dmz.teamsAffected, playerTeam))
+                if (!dmz.teamsAffected.empty() && !doesVectorContain<bz_eTeamType>(dmz.teamsAffected, playerTeam))
                 {
                     continue;
                 }
