@@ -20,6 +20,8 @@
  * THE SOFTWARE.
  */
 
+#include <algorithm>
+
 #include "bzfsAPI.h"
 #include "plugin_utils.h"
 
