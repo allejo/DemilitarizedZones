@@ -1,4 +1,4 @@
-# Plugin Name
+# Demilitarized Zones
 
 [![GitHub release](https://img.shields.io/github/release/allejo/DemilitarizedZones.svg)](https://github.com/allejo/DemilitarizedZones/releases/latest)
 ![Minimum BZFlag Version](https://img.shields.io/badge/BZFlag-v2.4.0+-blue.svg)
