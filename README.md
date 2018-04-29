@@ -29,7 +29,7 @@ This plug-in does not take any special configuration options at load time.
 -loadplugin DemilitarizedZones
 ```
 
-### Custom World Objects
+### Custom Map Objects
 
 ```text
 # Rectangle
