@@ -1,7 +1,7 @@
 # Demilitarized Zones
 
 [![GitHub release](https://img.shields.io/github/release/allejo/DemilitarizedZones.svg)](https://github.com/allejo/DemilitarizedZones/releases/latest)
-![Minimum BZFlag Version](https://img.shields.io/badge/BZFlag-v2.4.0+-blue.svg)
+![Minimum BZFlag Version](https://img.shields.io/badge/BZFlag-v2.4.14+-blue.svg)
 [![License](https://img.shields.io/github/license/allejo/DemilitarizedZones.svg)](LICENSE.md)
 
 > :rotating_light: :warning: **WARNING** :rotating_light: :warning:
@@ -17,7 +17,7 @@ A BZFlag plug-in that introduces the `DMZ` map object. Any tank that shoots insi
 ## Requirements
 
 - C++11
-- BZFlag 2.4.0+
+- BZFlag 2.4.14+
 
 ## Usage
 

@@ -31,8 +31,8 @@ const std::string PLUGIN_NAME = "Demilitarized Zones";
 // Define plugin version numbering
 const int MAJOR = 1;
 const int MINOR = 0;
-const int REV = 0;
-const int BUILD = 1;
+const int REV = 1;
+const int BUILD = 7;
 
 static bz_eTeamType convertTeamType(int teamNumber)
 {
@@ -107,6 +107,7 @@ const char* DemilitarizedZones::Name()
 
 void DemilitarizedZones::Init(const char* /*config*/)
 {
+    Register(bz_eAllowServerShotFiredEvent);
     Register(bz_eShotFiredEvent);
 
     bz_registerCustomMapObject("dmz", this);
@@ -162,6 +163,25 @@ void DemilitarizedZones::Event(bz_EventData* eventData)
 {
     switch (eventData->eventType)
     {
+        case bz_eAllowServerShotFiredEvent:
+        {
+            bz_AllowServerShotFiredEventData_V1 *data = (bz_AllowServerShotFiredEventData_V1*)eventData;
+
+            for (auto &dmz : registeredDMZs)
+            {
+                if (!dmz.teamsAffected.empty() && !doesVectorContain<bz_eTeamType>(dmz.teamsAffected, data->team))
+                {
+                    continue;
+                }
+
+                if (dmz.pointInZone(data->pos))
+                {
+                    data->allow = false;
+                }
+            }
+        }
+        break;
+
         case bz_eShotFiredEvent:
         {
             // This event is called each time a shot is fired
